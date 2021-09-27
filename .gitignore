@@ -17,3 +17,6 @@ go-web-server-example
 
 # Goland directory
 .idea/
+
+# custom ignore directory
+gitignore/
