@@ -4,6 +4,7 @@
 *.dll
 *.so
 *.dylib
+go-web-server-example
 
 # Test binary, built with `go test -c`
 *.test
