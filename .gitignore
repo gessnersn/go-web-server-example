@@ -20,3 +20,6 @@ go-web-server-example
 
 # custom ignore directory
 gitignore/
+
+tmp/
+.env

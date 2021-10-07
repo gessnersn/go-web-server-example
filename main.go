@@ -1,12 +1,20 @@
 package main
 
 import (
+    "log"
+    "os"
     "encoding/json"
     "net/http"
     "strings"
+	"github.com/joho/godotenv"
 )
 
 func main() {
+    err := godotenv.Load()
+	if err != nil {
+		log.Println("Error loading .env file")
+	}
+
     http.HandleFunc("/hello", hello)
 
     http.HandleFunc("/weather/", func(w http.ResponseWriter, r *http.Request) {
@@ -30,7 +38,8 @@ func hello(w http.ResponseWriter, r *http.Request) {
 }
 
 func query(city string) (weatherData, error) {
-    resp, err := http.Get("https://api.openweathermap.org/data/2.5/weather?APPID=API_KEY&q=" + city)
+    owmApikey := os.Getenv("OWM_APIKEY")
+    resp, err := http.Get("https://api.openweathermap.org/data/2.5/weather?APPID=" + owmApikey + "&q=" + city)
     if err != nil {
         return weatherData{}, err
     }
